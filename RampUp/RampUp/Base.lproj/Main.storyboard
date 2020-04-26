@@ -7,34 +7,62 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Ramp Placer View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="RampUp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="RampPlacerViewController" customModule="RampUp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U0K-SW-4ec">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrB-h1-WRS">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXj-ed-nJA">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </arscnView>
+                                <subviews>
+                                    <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Myi-Wz-rfm">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    </arscnView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLI-JI-rpE">
+                                        <rect key="frame" x="260" y="588" width="107" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="107" id="Fi3-KY-4LR"/>
+                                            <constraint firstAttribute="height" constant="71" id="yBi-Rs-r4Y"/>
+                                        </constraints>
+                                        <state key="normal" image="rampIcon"/>
+                                        <connections>
+                                            <action selector="rampIconPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="RNa-NZ-Xgu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="Myi-Wz-rfm" firstAttribute="leading" secondItem="EXj-ed-nJA" secondAttribute="leading" id="2CK-sY-wLh"/>
+                                    <constraint firstAttribute="bottom" secondItem="vLI-JI-rpE" secondAttribute="bottom" constant="8" id="Kcc-z0-hfq"/>
+                                    <constraint firstAttribute="trailing" secondItem="vLI-JI-rpE" secondAttribute="trailing" constant="8" id="WFa-Fv-Mat"/>
+                                    <constraint firstItem="Myi-Wz-rfm" firstAttribute="top" secondItem="EXj-ed-nJA" secondAttribute="top" id="rPe-Ag-OrP"/>
+                                    <constraint firstAttribute="trailing" secondItem="Myi-Wz-rfm" secondAttribute="trailing" id="vNK-yP-C6K"/>
+                                    <constraint firstAttribute="bottom" secondItem="Myi-Wz-rfm" secondAttribute="bottom" id="zAQ-DV-cbY"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="GsS-dJ-CKf"/>
-                            <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="VpT-BR-CcM"/>
-                            <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="XyZ-9z-H8e"/>
-                            <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="rJc-2c-zQA"/>
+                            <constraint firstItem="EXj-ed-nJA" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="Q2n-xq-fQg"/>
+                            <constraint firstItem="EXj-ed-nJA" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="fid-f9-1dB"/>
+                            <constraint firstItem="EXj-ed-nJA" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="rG8-FN-jr8"/>
+                            <constraint firstItem="EXj-ed-nJA" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="whE-7i-ju5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
-                        <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="sceneView" destination="Myi-Wz-rfm" id="BBi-Dl-9Uy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="139"/>
+            <point key="canvasLocation" x="132" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="rampIcon" width="107" height="71"/>
+    </resources>
 </document>
