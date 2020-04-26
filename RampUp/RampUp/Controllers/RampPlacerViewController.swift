@@ -13,12 +13,31 @@ import ARKit
 class RampPlacerViewController: UIViewController, ARSCNViewDelegate, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var sceneView: ARSCNView!
-    var selectedRamp: String!
+    @IBOutlet weak var buttons: UIStackView!
+    @IBOutlet weak var rotateButton: UIButton!
+    @IBOutlet weak var upButton: UIButton!
+    @IBOutlet weak var downButton: UIButton!
+    
+    
+    var selectedRampName: String!
+    var selectedRamp: SCNNode!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
         sceneView.autoenablesDefaultLighting = true
+        
+        let rotateGestureRecogniser = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress))
+        let upGestureRecogniser = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress))
+        let downGestureRecogniser = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress))
+        rotateGestureRecogniser.minimumPressDuration = 0.1
+        upGestureRecogniser.minimumPressDuration = 0.1
+        downGestureRecogniser.minimumPressDuration = 0.1
+        
+        rotateButton.addGestureRecognizer(rotateGestureRecogniser)
+        upButton.addGestureRecognizer(upGestureRecogniser)
+        downButton.addGestureRecognizer(downGestureRecogniser)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +78,7 @@ class RampPlacerViewController: UIViewController, ARSCNViewDelegate, UIPopoverPr
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let selectedObject = selectedRamp else { return }
+        guard let selectedObject = selectedRampName else { return }
         guard let touch = touches.first else { return }
         let results = sceneView.hitTest(touch.location(in: sceneView), types: [.featurePoint])
         
@@ -76,10 +95,41 @@ class RampPlacerViewController: UIViewController, ARSCNViewDelegate, UIPopoverPr
         let scale = ScaleFor.item(obj: selectedObject)
         node?.scale = SCNVector3Make(scale, scale, scale)
         node?.position = SCNVector3Make(hitPosition.x, hitPosition.y, hitPosition.z)
+        selectedRamp = node!
         sceneView.scene.rootNode.addChildNode(node!)
+        buttons.isHidden = false
     }
     
     func onRampSelected(_ rampName: String) {
-        selectedRamp = rampName
+        selectedRampName = rampName
     }
+    
+    @IBAction func onRemovePressed(_ sender: Any) {
+        if let ramp = selectedRamp {
+            ramp.removeFromParentNode()
+            selectedRamp = nil
+            selectedRampName = ""
+            buttons.isHidden = true
+        }
+    }
+    
+    @objc func onLongPress(gesture: UILongPressGestureRecognizer) {
+        if let ramp = selectedRamp {
+            if gesture.state == .ended {
+                ramp.removeAllActions()
+            } else if gesture.state == .began {
+                if gesture.view === rotateButton {
+                    let rotate = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: CGFloat(0.08 * Double.pi), z: 0, duration: 0.1))
+                    ramp.runAction(rotate)
+                } else if gesture.view === upButton {
+                    let move = SCNAction.repeatForever(SCNAction.moveBy(x: 0, y: 0.08, z: 0, duration: 0.1))
+                    ramp.runAction(move)
+                } else if gesture.view === downButton {
+                    let move = SCNAction.repeatForever(SCNAction.moveBy(x: 0, y: -0.08, z: 0, duration: 0.1))
+                    ramp.runAction(move)
+                }
+            }
+        }
+    }
+    
 }

@@ -32,10 +32,40 @@
                                             <action selector="rampIconPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="RNa-NZ-Xgu"/>
                                         </connections>
                                     </button>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TdE-Ob-kSC">
+                                        <rect key="frame" x="8" y="627" width="128" height="32"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYm-W3-tau">
+                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                <state key="normal" image="removeButton"/>
+                                                <connections>
+                                                    <action selector="onRemovePressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="c9A-HB-ElS"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KS6-hO-hlx">
+                                                <rect key="frame" x="32" y="0.0" width="32" height="32"/>
+                                                <state key="normal" image="rotateButton"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tS1-rM-uXs">
+                                                <rect key="frame" x="64" y="0.0" width="32" height="32"/>
+                                                <state key="normal" image="upArrow"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KiE-1F-Mbk">
+                                                <rect key="frame" x="96" y="0.0" width="32" height="32"/>
+                                                <state key="normal" image="downArrow"/>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="LHf-k2-IdM"/>
+                                            <constraint firstAttribute="width" constant="128" id="r6V-ZB-VPM"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="Myi-Wz-rfm" firstAttribute="leading" secondItem="EXj-ed-nJA" secondAttribute="leading" id="2CK-sY-wLh"/>
+                                    <constraint firstAttribute="bottom" secondItem="TdE-Ob-kSC" secondAttribute="bottom" constant="8" id="9nF-WB-ggm"/>
+                                    <constraint firstItem="TdE-Ob-kSC" firstAttribute="leading" secondItem="EXj-ed-nJA" secondAttribute="leading" constant="8" id="IQP-NK-GtF"/>
                                     <constraint firstAttribute="bottom" secondItem="vLI-JI-rpE" secondAttribute="bottom" constant="8" id="Kcc-z0-hfq"/>
                                     <constraint firstAttribute="trailing" secondItem="vLI-JI-rpE" secondAttribute="trailing" constant="8" id="WFa-Fv-Mat"/>
                                     <constraint firstItem="Myi-Wz-rfm" firstAttribute="top" secondItem="EXj-ed-nJA" secondAttribute="top" id="rPe-Ag-OrP"/>
@@ -54,7 +84,11 @@
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
+                        <outlet property="buttons" destination="TdE-Ob-kSC" id="CzZ-wz-t8q"/>
+                        <outlet property="downButton" destination="KiE-1F-Mbk" id="90Q-q7-gck"/>
+                        <outlet property="rotateButton" destination="KS6-hO-hlx" id="sdG-x2-l4b"/>
                         <outlet property="sceneView" destination="Myi-Wz-rfm" id="BBi-Dl-9Uy"/>
+                        <outlet property="upButton" destination="tS1-rM-uXs" id="kqe-Wr-IxE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -63,6 +97,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="downArrow" width="32" height="32"/>
         <image name="rampIcon" width="107" height="71"/>
+        <image name="removeButton" width="32" height="32"/>
+        <image name="rotateButton" width="32" height="32"/>
+        <image name="upArrow" width="32" height="32"/>
     </resources>
 </document>

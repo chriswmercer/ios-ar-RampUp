@@ -65,6 +65,8 @@ class RampPictureViewController: UIViewController, UIGestureRecognizerDelegate {
         scene.rootNode.addChildNode(quarterNode!)
         
         preferredContentSize = size
+//        view.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//        view.layer.borderWidth = 3.0
     }
     
     @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
